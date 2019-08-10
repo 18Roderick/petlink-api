@@ -15,7 +15,6 @@
   "keywords": [
     "node",
     "express",
-    "sequelize",
     "nodemailer",
     "pug",
     "mysql"
@@ -29,22 +28,13 @@
   "dependencies": {
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
-    "cloudinary": "^1.14.0",
-    "connect-flash": "^0.1.1",
     "connect-mongo": "^3.0.0",
-    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
-    "express-session": "^1.16.2",
     "express-validator": "^5.3.1",
     "mongoose": "^5.5.11",
     "morgan": "^1.9.1",
     "multer": "^1.4.1",
     "nodemailer": "^6.2.1",
-    "passport": "^0.4.0",
-    "passport-google-oauth20": "^2.0.0",
-    "passport-local": "^1.0.0",
-    "pug": "^2.0.3",
-    "serve-favicon": "^2.5.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
