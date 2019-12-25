@@ -1,3 +1,6 @@
+//configrurar variables de entorno con dotenv
+require('dotenv').config();
+
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -11,8 +14,6 @@ const errorHandler = require('./routes/error');
 
 // inicializaciones
 const app = express();
-require('./services/passport');
-require('./services/passportGoogle');
 
 // variables
 const PORT = process.env.PORT || 3000;
@@ -28,7 +29,7 @@ app.set('view engine', 'pug');
 // seteando direcciones estaticas en el servidor
 app.use('/public', express.static(PUBLIC_FILES));
 app.use('/galeria', express.static(GALERIA_PATH));
-app.use(favicon(path.join(PUBLIC_FILES, 'images', 'favicon.ico')));
+
 // middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
