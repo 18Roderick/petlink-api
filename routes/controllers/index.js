@@ -46,6 +46,5 @@ controllers.signIn = async (req, res) => {
   }
 };
 
-controllers.uploadImage = async (req, res) => {};
 
 module.exports = controllers;

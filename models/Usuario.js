@@ -24,8 +24,8 @@ const Usuario = new Schema({
   },
   contacto: {
     type: {
-      telefono: String,
-      celular: String
+      telefono: [String],
+      celular: [String]
     }
   },
   perros: [

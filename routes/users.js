@@ -23,48 +23,24 @@ router.get('/profile', async (req, res) => {
   }
 });
 
-router.get('/profile/update', async (req, res) => {
-  try {
-    const user = await Usuario.findById(req.user._id);
-    user.foto = await Imagenes.findOne({ usuario: user._id });
-    res.render('profile', { title: user.nombre, user });
-  } catch (error) {
-    res.json(error);
-  }
+router.get('/profile/update', (req, res) => {
+  res.render('profile/update');
 });
 
-router.put('/profile/update', async (req, res) => {
-  try {
-    const user = await Usuario.findById(req.user._id);
-    user.nombre = req.body.nombre;
-    user.apellido = req.body.apellido;
-    user.contacto = { telefono: req.body.telefono, celular: req.body.celular };
-    user.password = req.body.password;
-    user.direccion = {
-      provincia: req.body.provincia,
-      distritio: req.body.distrito,
-      corregimiento: req.body.corregimiento
-    };
-
-    user.save();
-    res.render('profile', { title: user.nombre, user });
-  } catch (error) {
-    res.json(error);
-  }
-});
+router.('/profile/update');
 
 router.post('/images/profile', imageUploader.single('profile'), async (req, res) => {
   console.log(req.file, req.files);
   res.json(req.file);
 });
-router.put('/images/profile', imageUploader.single('profile'), async (req, res) => {});
+router.put('/images/profile', imageUploader.single('profile'), async (req, res) => {
+  
+});
 
 // registro del perro
-router.get('/dog', async (req, res) => {});
-router.get('/dog/:id', async (req, res) => {});
+router.get('/dog', (req, res) => {});
 router.post('/dog', async (req, res) => {});
-router.put('/dog/:id', async (req, res) => {});
-router.delete('/dog/:id', async (req, res) => {});
+router.put('/dog', async (req, res) => {});
 
 router.delete('/images/dog/:id', (req, res) => {
   res.json({ id: req.params.id });

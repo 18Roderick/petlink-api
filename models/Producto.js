@@ -25,13 +25,7 @@ const Producto = new Schema({
   },
   descripcion: {
     type: String
-  },
-  fotos: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Imagenes'
-    }
-  ]
+  }
 });
 
 module.exports = moongose.model('Producto', Producto);
