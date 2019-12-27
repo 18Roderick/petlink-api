@@ -6,6 +6,9 @@ const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
+const compression = require('compression');
+const cors = require('cors');
 
 // rutas
 const routers = require('./routes/index');
@@ -23,14 +26,15 @@ const GALERIA_PATH = path.join(__dirname, 'galeria');
 
 // configuraciones
 app.set('port', PORT);
-app.set('views', VIEWS);
-app.set('view engine', 'pug');
 
 // seteando direcciones estaticas en el servidor
 app.use('/public', express.static(PUBLIC_FILES));
 app.use('/galeria', express.static(GALERIA_PATH));
 
 // middlewares
+app.use(compression());
+app.use(helmet());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());

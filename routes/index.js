@@ -10,7 +10,7 @@ const root = {};
 
 router.get('/', (req, res) => {
 	res.status(200).json({
-		ok: true,
+		success: true,
 		message: 'Bienvenido al api de petlink',
 	});
 });
