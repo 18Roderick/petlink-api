@@ -1,9 +1,8 @@
+require('dotenv').config();
 const crypto = require('crypto');
-const CRYPTO_ALGORITHM = process.env.CRYPTO_ALGORITHM || 'aes-192-cbc';
-const CRYPTO_SECRET_KEY =
-	process.env.CRYPTO_SECRET_KEY || 'fuiniuhu28r7hg7g85d-d34r92#';
-const SALT =
-	process.env.CRYPTO_SALT || 'saltfmwofnwoifnoi9r823j98rh98rh2er24rf';
+const CRYPTO_ALGORITHM = process.env.CRYPTO_ALGORITHM;
+const CRYPTO_SECRET_KEY = process.env.CRYPTO_SECRET_KEY;
+const SALT = process.env.CRYPTO_SALT;
 const BITS = 24;
 
 const Crypting = {
@@ -25,7 +24,7 @@ const Crypting = {
 	},
 	async compare(text1, text2) {
 		try {
-			return (await this.encrypt(text1)) === (await this.encrypt(text2));
+			return (await this.encrypt(text1)) === text2;
 		} catch (error) {
 			throw error;
 		}
@@ -45,5 +44,4 @@ const Crypting = {
 		}
 	},
 };
-
 module.exports = Crypting;

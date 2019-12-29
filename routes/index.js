@@ -1,26 +1,12 @@
 const express = require('express');
-const { validationResult } = require('express-validator');
 
 const router = express.Router();
 
-const Controllers = require('./controllers');
-const formValidator = require('../middleware/formValidator');
+const authRouter = require('./authRouter');
+const publicRouter = require('./publicRouter');
 
-const root = {};
+router.use('/', publicRouter);
 
-router.get('/', (req, res) => {
-	res.status(200).json({
-		success: true,
-		message: 'Bienvenido al api de petlink',
-	});
-});
-
-router.get('/adopt', async (req, res) => {
-	res.render('adopt', { title: 'adopte', data: '' });
-});
-
-router.get('/about', (req, res) => {
-	res.render('about', { title: 'acerca de' });
-});
+router.use('/auth', authRouter);
 
 module.exports = router;

@@ -5,6 +5,7 @@
     "browser": true,
     "commonjs": true,
     "es5": true,
+    "es6": true,
     "jest": true,
     "node": true
   },
