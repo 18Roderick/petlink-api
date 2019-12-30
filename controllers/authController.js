@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const Usuario = require('../models/Usuario');
 const Crypting = require('../utils/crytping');
+const { token } = require('../utils');
 
 //controlador de registro de usuario
 module.exports.signup = async (req, res) => {
@@ -21,7 +22,7 @@ module.exports.signup = async (req, res) => {
 			const data = await newuser.save();
 			res.status(201).json({
 				success: true,
-				data: data,
+				token: await token.create({ id: data._id }),
 			});
 		}
 	} catch (error) {
@@ -37,7 +38,11 @@ module.exports.signIn = async (req, res) => {
 		const data = await Usuario.findOne({ email });
 		if (data) {
 			if (await Crypting.compare(password, data.password)) {
-				res.status(202).json({ success: true, message: 'login correcto' });
+				res.status(202).json({
+					success: true,
+					message: 'login correcto',
+					token: await token.create({ id: data._id }),
+				});
 			} else {
 				res.status(400).json({
 					success: false,

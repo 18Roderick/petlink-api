@@ -62,4 +62,5 @@ typings/
 .next
 
 # ignorar archivos con keys
-.key
+token_private.key
+token_public.key
