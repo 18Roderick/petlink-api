@@ -17,7 +17,6 @@ const tokenConfig = {
 //creacion del token
 async function create(data) {
 	try {
-		tokenConfig.complete = true;
 		return await jwt.sign({ data }, PRIVATE_KEY, tokenConfig);
 	} catch (error) {
 		throw error;
