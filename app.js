@@ -47,6 +47,7 @@ app.use(morgan('dev'));
 app.use(routers);
 app.use(errorHandler);
 
+//inicio de conexion a la base de datos
 mongoose.connection.on(
 	'error',
 	console.error.bind(console, 'connection error:')

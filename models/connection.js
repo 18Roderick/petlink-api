@@ -17,11 +17,4 @@ mongoose.connect(url, {
 
 mongoose.Promise = global.Promise;
 
-const { connection } = mongoose;
-
-connection.on('error', console.error.bind(console, 'connection error:'));
-connection.once('open', (...args) => {
-	console.log('conexion exitosa');
-});
-
 module.exports = mongoose;

@@ -17,6 +17,8 @@ module.exports.signup = async (req, res) => {
 				nombre,
 				apellido,
 				email,
+				telefono,
+				celular,
 				password: await Crypting.encrypt(password1),
 			});
 			const data = await newuser.save();

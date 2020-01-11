@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "contacto"
-    ]
+    ],
+    "editor.formatOnSave": true
 }
