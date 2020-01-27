@@ -58,3 +58,5 @@ mongoose.connection.once('open', (...args) => {
 		console.log(`server ready on http://localhost:${PORT}`)
 	);
 });
+
+module.exports = app;

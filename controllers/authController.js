@@ -35,10 +35,12 @@ module.exports.signup = async (req, res) => {
 
 //controlador de iniciar sesion de usuario
 module.exports.signIn = async (req, res) => {
+	console.log('en inicio de sesion', req.body);
 	const { email, password } = req.body;
 	try {
 		const data = await Usuario.findOne({ email });
 		if (data) {
+			console.log('ya vi al usuario');
 			if (await Crypting.compare(password, data.password)) {
 				res.status(202).json({
 					success: true,
