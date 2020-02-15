@@ -40,12 +40,12 @@ module.exports.signIn = async (req, res) => {
 	try {
 		const data = await Usuario.findOne({ email });
 		if (data) {
-			console.log('ya vi al usuario');
+			console.log('ruta Iniciar sesion ');
 			if (await Crypting.compare(password, data.password)) {
 				res.status(202).json({
 					success: true,
 					message: 'login correcto',
-					token: await token.create({ id: data._id }),
+					token: await token.create({ id: data._id, roll: data.roll }),
 				});
 			} else {
 				res.status(400).json({

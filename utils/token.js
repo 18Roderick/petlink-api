@@ -27,15 +27,16 @@ async function create(data) {
 async function verify(token) {
 	try {
 		const verfied = await jwt.decode(token, { complete: true });
+
 		return {
 			success: true,
 			data: verfied.payload.data,
 		};
 	} catch (error) {
-		return {
+		throw new Error({
 			success: false,
 			message: error.message,
-		};
+		});
 	}
 }
 

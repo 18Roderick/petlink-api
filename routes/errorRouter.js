@@ -12,7 +12,7 @@ router.use((req, res) => {
 });
 
 router.use((err, req, res, next) => {
-	console.error(err.stack);
+	console.error('Catch de ruta de error final', err.stack);
 	res.status(500).json({
 		success: false,
 		title: err.message,

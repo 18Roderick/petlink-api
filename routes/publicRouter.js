@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+const { isAuthenticated } = require('../middleware/isAuthenticated');
+
+router.get('/', isAuthenticated, (req, res) => {
 	res.status(200).json({
 		success: true,
 		message: 'Bienvenido al api de petlink',
