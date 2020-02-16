@@ -4,14 +4,13 @@ const isAuthenticated = async (req, res, next) => {
 	try {
 		const tmpToken = extractToken(req.headers.authorization);
 		const verifyToken = await token.verify(tmpToken);
-		console.log('token verificado', verifyToken);
+
+		req.user = { ...verifyToken.data };
+		console.log('Usuario verificado', verifyToken, req.user);
 		next();
 	} catch (error) {
-		res.status(301).json({
-			success: false,
-			message: 'Token Invalido',
-			isValid: false,
-		});
+		console.log('catch de is authenticated', error);
+		next(error);
 	}
 };
 

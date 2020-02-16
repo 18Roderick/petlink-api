@@ -43,9 +43,19 @@ app.use(morgan('dev'));
 
 // Global Variables
 
-// rutas
+// routes
 app.use(routers);
+
 app.use(errorHandler);
+
+app.use((err, req, res, next) => {
+	console.error('Catch de ruta de error final', err.stack);
+	res.status(500).json({
+		success: false,
+		title: err.name,
+		message: err.message,
+	});
+});
 
 //inicio de conexion a la base de datos
 mongoose.connection.on(

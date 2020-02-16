@@ -33,10 +33,11 @@ async function verify(token) {
 			data: verfied.payload.data,
 		};
 	} catch (error) {
-		throw new Error({
-			success: false,
-			message: error.message,
-		});
+		let newError = new Error();
+		newError.message = error.message;
+		newError.name = 'Token Error';
+		newError.success = false;
+		throw newError;
 	}
 }
 
