@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider     = "prisma-client-js"
+  relationMode = "prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Mascota {
+  id                   Int             @id @default(autoincrement())
+  nombre               String
+  edad                 Int
+  raza                 String
+  genero               Genero
+  tamano               Tamano
+  peso                 Float
+  descripcion          String
+  imagen               String
+  historial_medico     String
+  historial_vacunacion String
+  usuarioId            Int?
+  refugioRescateId     Int?
+  Comentario           Comentario[]
+  Usuario              Usuario?        @relation(fields: [usuarioId], references: [id])
+  RefugioRescate       RefugioRescate? @relation(fields: [refugioRescateId], references: [id])
+}
+
+enum Genero {
+  MACHO
+  HEMBRA
+}
+
+enum Tamano {
+  PEQUENO
+  MEDIANO
+  GRANDE
+}
+
+model Usuario {
+  id         Int          @id @default(autoincrement())
+  nombre     String
+  email      String       @unique
+  password   String
+  ubicacion  String
+  mascotas   Mascota[]
+  Comentario Comentario[]
+}
+
+model RefugioRescate {
+  id          Int       @id @default(autoincrement())
+  nombre      String
+  direccion   String
+  contacto    String
+  descripcion String
+  mascotas    Mascota[]
+}
+
+model Mensaje {
+  id                 Int      @id @default(autoincrement())
+  mensaje            String
+  fecha_envio        DateTime @default(now())
+  nombre_remitente   String
+  email_remitente    String
+  email_destinatario String
+}
+
+model Comentario {
+  id         Int     @id @default(autoincrement())
+  usuario    Usuario @relation(fields: [usuario_id], references: [id])
+  usuario_id Int
+  mascota    Mascota @relation(fields: [mascota_id], references: [id])
+  mascota_id Int
+  comentario String
+}
